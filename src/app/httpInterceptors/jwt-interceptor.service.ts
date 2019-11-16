@@ -8,19 +8,19 @@ import { UserServiceService } from '../services/user-service.service';
 })
 export class JwtInterceptorService implements HttpInterceptor {
 
-  currentUser = new NewUser();
-  token: string;
+  // currentUser = new NewUser();
+  // token: string;
 
   constructor(private userS: UserServiceService) {
-    this.currentUser = JSON.parse(userS.getUser());
-    this.token = userS.getToken();
+    // this.currentUser = JSON.parse(userS.getUser());
+    // this.token = userS.getToken();
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (!!this.currentUser && !!this.token) {
+    if (this.userS.loggedIn()) {
       const reqWithToken = req.clone({
         setHeaders: {
-          Authorization: this.token
+          Authorization: this.userS.getToken()
         }
       });
       return next.handle(reqWithToken);

@@ -47,4 +47,8 @@ export class UserServiceService {
     return localStorage.getItem('currentUser');
   }
 
+  loggedIn(): boolean {
+    return (!!this.getToken() && !!this.getUser());
+  }
+
 }

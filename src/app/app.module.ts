@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { UserServiceService } from './services/user-service.service';
 import { JwtInterceptorService } from './httpInterceptors/jwt-interceptor.service';
+import { AuthGuard } from './auth.guard';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -29,7 +30,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptorService,
     multi: true
-  }],
+  }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
