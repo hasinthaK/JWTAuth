@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginuser = new LoginUser();
+  loading = false;
 
   constructor(private userS: UserServiceService,
               private router: Router
-              ) { }
+              ) {}
 
   ngOnInit() {
   }
@@ -25,6 +26,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          localStorage.setItem('token', res.toString());
+          localStorage.setItem('currentUser', JSON.stringify(this.loginuser));
           this.router.navigate(['/profile']);
         },
         err => {

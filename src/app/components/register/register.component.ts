@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   newuser = new NewUser();
+  loading = false;
 
   constructor(private userS: UserServiceService, private router: Router) { }
 
@@ -23,16 +24,19 @@ export class RegisterComponent implements OnInit {
 
   register() {
     console.log(this.newuser);
-    // this.userS.register(this.newuser)
-    // .subscribe(
-    //   res => {
-    //     console.log(res);
-    //     this.router.navigate(['/profile']);
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
+    this.userS.register(this.newuser)
+    .subscribe(
+      res => {
+        console.log(res);
+        localStorage.setItem('token', res.toString());
+        localStorage.setItem('currentUser', JSON.stringify(this.newuser));
+        this.router.navigate(['/profile']);
+      },
+      err => {
+        console.log(err);
+        alert('Error while sign up!');
+      }
+    );
   }
 
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginUser } from '../models/login-user';
 import { NewUser } from '../models/new-user';
+// import { BehaviorSubject } from 'rxjs';
+// import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +12,39 @@ export class UserServiceService {
 
   loginUrl = 'loginUrl';
   registerUrl = 'registerUrl';
+//  currentUserSubject: BehaviorSubject<NewUser>;
 
-  constructor(private https: HttpClient) { }
+  constructor(private https: HttpClient) {
+    // this.currentUserSubject = new BehaviorSubject<NewUser>(JSON.parse(localStorage.getItem('currentUser')));
+  }
 
   login(user: LoginUser) {
     console.log('Trying to login..');
-    return this.https.post(this.loginUrl, user);
+    return this.https.post<any>(this.loginUrl, user); // Backened api must return the user with token
+          // .pipe(map(NewUser => {
+          //   localStorage.setItem('currentUser', JSON.stringify(NewUser));
+          //   this.currentUserSubject.next(NewUser);
+          //   return NewUser;
+          // }));
+  }
+
+  logout() {
+    console.log('Logging out..');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
   register(user: NewUser) {
     console.log('Registering..');
     return this.https.post(this.registerUrl, user);
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  getUser() {
+    return localStorage.getItem('currentUser');
   }
 
 }
