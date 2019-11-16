@@ -1,1 +1,40 @@
-<p>register works!</p>
+<div class="container" style="margin:5em;">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Register</h3>
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="username" class="form-control" placeholder="username" [(ngModel)]="newuser.username">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" name="password" class="form-control" placeholder="password" [(ngModel)]="newuser.password">
+          </div>
+          <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <label>User</label>
+            <input type="checkbox" class="form-control" value="USER" name="USER" [(ngModel)]="USER" style="display: inline-block;margin-right: 10px;">
+            <label>Admin</label>
+            <input type="checkbox" class="form-control" value="ADMIN" name="ADMIN" [(ngModel)]="ADMIN" style="display: inline-block;margin-right: 10px;">
+          </div>
+
+					<div class="form-group">
+						<input type="submit" value="Register" class="btn float-right login_btn" (click)="register()">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+			</div>
+		</div>
+	</div>
+</div>
