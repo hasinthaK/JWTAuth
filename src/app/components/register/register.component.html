@@ -22,10 +22,11 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            <label>User</label>
-            <input type="checkbox" class="form-control" value="USER" name="USER" [(ngModel)]="USER" style="display: inline-block;margin-right: 10px;">
+            <!-- <label>User</label>
+            <input type="checkbox" class="form-control" value="USER" name="USER" (checked)="addRole('USER')" style="display: inline-block;margin-right: 10px;">
             <label>Admin</label>
-            <input type="checkbox" class="form-control" value="ADMIN" name="ADMIN" [(ngModel)]="ADMIN" style="display: inline-block;margin-right: 10px;">
+            <input type="checkbox" class="form-control" value="ADMIN" name="ADMIN" (checked)="addRole('ADMIN')" style="display: inline-block;margin-right: 10px;"> -->
+            <input type="text" name="roles" class="form-control" [(ngModel)]="newuser.roles">
           </div>
 
 					<div class="form-group">
