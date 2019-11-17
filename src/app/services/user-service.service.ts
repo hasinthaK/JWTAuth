@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginUser } from '../models/login-user';
 import { NewUser } from '../models/new-user';
 // import { BehaviorSubject } from 'rxjs';
@@ -35,7 +35,11 @@ export class UserServiceService {
 
   register(user: NewUser) {
     console.log('Registering..');
-    return this.https.post(this.registerUrl, user);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      });
+    const options = { headers: headers };
+    return this.https.post(this.registerUrl, user, options);
   }
 
   getToken(): string {
