@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginUser } from '../models/login-user';
 import { NewUser } from '../models/new-user';
 // import { BehaviorSubject } from 'rxjs';
-// import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,8 @@ export class UserServiceService {
   }
 
   login(user: LoginUser) {
-    return this.https.post<any>(this.loginUrl, user); // Backened api must return the user with token
+    return this.https.post<any>(this.loginUrl, user)
+        .pipe(tap(res => console.log(res, res.headers.get('Authorization'))));
           // .pipe(map(NewUser => {
           //   localStorage.setItem('currentUser', JSON.stringify(NewUser));
           //   this.currentUserSubject.next(NewUser);
@@ -35,11 +36,11 @@ export class UserServiceService {
 
   register(user: NewUser) {
     console.log('Registering..');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-      });
-    const options = { headers };
-    return this.https.post(this.registerUrl, user, options);
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json'
+    //   });
+    // const options = { headers };
+    return this.https.post<any>(this.registerUrl, user);
   }
 
   getToken(): string {
