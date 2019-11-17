@@ -38,7 +38,7 @@ export class UserServiceService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
       });
-    const options = { headers: headers };
+    const options = { headers };
     return this.https.post(this.registerUrl, user, options);
   }
 
