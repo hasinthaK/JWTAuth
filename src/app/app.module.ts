@@ -26,11 +26,13 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserServiceService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptorService,
-    multi: true
-  }, AuthGuard],
+  providers: [UserServiceService,
+  //   {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: JwtInterceptorService,
+  //   multi: true
+  // },
+  AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

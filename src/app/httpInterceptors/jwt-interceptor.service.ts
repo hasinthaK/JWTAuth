@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
-import { NewUser } from '../models/new-user';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { UserServiceService } from '../services/user-service.service';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class JwtInterceptorService implements HttpInterceptor {
     // this.token = userS.getToken();
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.userS.loggedIn()) {
       const reqWithToken = req.clone({
         setHeaders: {

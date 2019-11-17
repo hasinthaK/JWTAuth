@@ -24,14 +24,16 @@ export class LoginComponent implements OnInit {
     console.log('trying to login..');
     this.userS.login(this.loginuser)
       .subscribe(
-        res => {
-          console.log(res);
-          localStorage.setItem('token', res.toString());
-          localStorage.setItem('currentUser', JSON.stringify(this.loginuser));
+        // data => console.log(data),
+        // err => console.log(err)
+        response => {
+          console.log(response);
+          // localStorage.setItem('token', res.toString());
+          // localStorage.setItem('currentUser', JSON.stringify(this.loginuser));
           this.router.navigate(['/profile']);
         },
-        err => {
-          console.log(err);
+        error => {
+          console.log(error);
           alert('Incorrect credentials!');
         }
       );

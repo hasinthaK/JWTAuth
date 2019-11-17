@@ -10,8 +10,8 @@ import { NewUser } from '../models/new-user';
 })
 export class UserServiceService {
 
-  loginUrl = 'loginUrl';
-  registerUrl = 'registerUrl';
+  loginUrl = 'http://localhost:8080/login';
+  registerUrl = 'http://localhost:8080/users/register';
 //  currentUserSubject: BehaviorSubject<NewUser>;
 
   constructor(private https: HttpClient) {
@@ -19,7 +19,6 @@ export class UserServiceService {
   }
 
   login(user: LoginUser) {
-    console.log('Trying to login..');
     return this.https.post<any>(this.loginUrl, user); // Backened api must return the user with token
           // .pipe(map(NewUser => {
           //   localStorage.setItem('currentUser', JSON.stringify(NewUser));
