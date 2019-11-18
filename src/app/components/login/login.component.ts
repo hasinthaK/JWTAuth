@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     console.log('trying to login..', this.loginuser.username);
     this.userS.login(this.loginuser)
       .subscribe(
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
           alert('Incorrect credentials!');
         }
       );
+    this.loading = false;
   }
 
   gotoRegistration() {

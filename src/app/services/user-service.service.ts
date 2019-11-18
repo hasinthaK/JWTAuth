@@ -4,6 +4,7 @@ import { LoginUser } from '../models/login-user';
 import { NewUser } from '../models/new-user';
 // import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
