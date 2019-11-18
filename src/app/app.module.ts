@@ -27,11 +27,11 @@ import { ProfileComponent } from './components/profile/profile.component';
     FormsModule
   ],
   providers: [UserServiceService,
-  //   {
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: JwtInterceptorService,
-  //   multi: true
-  // },
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorService,
+    multi: true
+  },
   AuthGuard],
   bootstrap: [AppComponent]
 })
