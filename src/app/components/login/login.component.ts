@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   loginuser = new LoginUser();
   loading = false;
+  jwt: string = null;
+  username: string = null;
 
   constructor(private userS: UserServiceService,
               private router: Router
@@ -21,14 +23,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('trying to login..', this.loginuser);
+    console.log('trying to login..', this.loginuser.username);
     this.userS.login(this.loginuser)
       .subscribe(
-        // data => console.log(data),
-        // err => console.log(err)
         res => {
-          // console.log(res);
           console.log(res);
+          localStorage.setItem('token', res.jwt);
+          localStorage.setItem('username', res.username);
           // localStorage.setItem('token', res.toString());
           // localStorage.setItem('currentUser', JSON.stringify(this.loginuser));
           this.router.navigate(['/profile']);

@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 export class UserServiceService {
 
   loginUrl = 'http://localhost:8080/login';
-  registerUrl = 'http://localhost:8080/users/register';
+  registerUrl = 'http://localhost:8080/register';
 //  currentUserSubject: BehaviorSubject<NewUser>;
 
   constructor(private https: HttpClient) {
@@ -19,8 +19,8 @@ export class UserServiceService {
   }
 
   login(user: LoginUser) {
-    return this.https.post<any>(this.loginUrl, user)
-        .pipe(tap(res => console.log(res, res.headers.get('Authorization'))));
+    return this.https.post<any>(this.loginUrl, user);
+          // .pipe(tap(res => console.log(res, res.headers.get('Authorization'))));
           // .pipe(map(NewUser => {
           //   localStorage.setItem('currentUser', JSON.stringify(NewUser));
           //   this.currentUserSubject.next(NewUser);
@@ -30,12 +30,11 @@ export class UserServiceService {
 
   logout() {
     console.log('Logging out..');
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('username');
     localStorage.removeItem('token');
   }
 
   register(user: NewUser) {
-    console.log('Registering..');
     // const headers = new HttpHeaders({
     //   'Content-Type': 'application/json'
     //   });
@@ -48,11 +47,11 @@ export class UserServiceService {
   }
 
   getUser() {
-    return localStorage.getItem('currentUser');
+    return localStorage.getItem('username');
   }
 
-  loggedIn(): boolean {
-    return (!!this.getToken() && !!this.getUser());
+  isLoggedIn(): boolean {
+    return ((this.getToken() != null) && (this.getUser() != null));
   }
 
 }

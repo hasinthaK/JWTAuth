@@ -17,7 +17,7 @@ export class JwtInterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.userS.loggedIn()) {
+    if (this.userS.isLoggedIn()) {
       const reqWithToken = req.clone({
         setHeaders: {
           Authorization: this.userS.getToken()
