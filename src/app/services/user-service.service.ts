@@ -20,7 +20,7 @@ export class UserServiceService {
   }
 
   login(user: LoginUser) {
-    return this.https.post<any>(this.loginUrl, user);
+    return this.https.post<any>(this.loginUrl, user); // JWTSecurity 2 - returns jwt + fName
           // .pipe(tap(res => console.log(res, res.headers.get('Authorization'))));
           // .pipe(map(NewUser => {
           //   localStorage.setItem('currentUser', JSON.stringify(NewUser));

@@ -20,13 +20,12 @@ export class JwtInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = this.userS.getToken();
     console.log('Interceptor working..');
 
-    if (token) {
+    if (this.userS.isLoggedIn()) {
       req = req.clone({
         setHeaders: {
-          Authorization: token
+          Authorization: this.userS.getToken()
         }
       });
     }

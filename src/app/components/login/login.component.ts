@@ -37,10 +37,11 @@ export class LoginComponent implements OnInit {
         },
         err => {
           console.log(err);
+          this.loading = false;
           alert('Incorrect credentials!');
         }
       );
-    this.loading = false;
+
   }
 
   gotoRegistration() {
