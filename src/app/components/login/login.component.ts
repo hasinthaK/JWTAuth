@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
           alert('Incorrect credentials!');
         }
       );
-
-  }
+    // this.userS.testLogin();
+    }
 
   gotoRegistration() {
     this.router.navigate(['/register']);
